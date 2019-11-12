@@ -1,0 +1,9 @@
+.body{width: 1550px;}
+.bigTitle{height: 70px;border-bottom: 3px solid red;font-size: 36px; line-height: 70px;text-align: center;color: red;}
+.textTitle{height: 50px;line-height: 50px;text-align: center;font-size: 20px;font-weight: bolder;padding: 15px;}
+.textOther{text-align: center;}
+.textOther>div{display: inline-block;margin: 0 15px;font-size: 14px;}
+.textContent{padding: 25px;}
+.textContent>p{text-indent: 50px;line-height: 25px;}
+.textContent>p.tctz{margin-top: 15px;}
+.sourceTime{text-align: right;padding-right: 55px;line-height:30px;}

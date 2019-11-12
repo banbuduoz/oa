@@ -1,0 +1,6 @@
+.baoxiao>div{height: 70px;line-height: 70px;}
+.baoxiao>div>textarea{width: 500px;height: 70px;outline: none;}
+button{width: 150px;height: 40px;border:1px solid #000;border-radius: 5px;outline: none;color: #000;background-color: #fff;margin-top: 30px;margin-left: 170px}
+button:hover{border: 1px solid #fff;color: #fff;background-color: #000;text-align: center;}
+input,textarea,select,button{outline: none;transition: none !important;}
+.qwe{width: 600px;margin: auto}

@@ -1,0 +1,12 @@
+.box50{width: 763px;height: 600px;overflow: auto;display: inline-block;}
+table.kxzf{width: 763px;font-size: 12px;}
+table.kxzf tr{height: 40px;line-height: 40px;}
+table.kxzf tr.onFocus{background-color: bisque}
+.bxinfo{border: 1px solid #e8e8e8}
+.bxinfo>div:not(:first-child){height: 40px;border-bottom: 1px solid #e8e8e8;padding-left: 15px;line-height: 40px}
+.bxinfo>div.yt{height: 300px;}
+.btnBox{display: flex;justify-content: space-around;}
+.btnBox .btntf{width: 300px;border: none;transition: none;outline: none}
+.btnBox .btntf:hover{background-color: #000;}
+.t{background-color: greenyellow}
+.f{background-color: red}

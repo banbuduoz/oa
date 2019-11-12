@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/otherReset.css">
+<link rel="stylesheet" href="../css/fybx.css">
+<title>费用报销</title>
+<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		console.log("123");
+		$.ajax({
+			type : "post",
+			url : "baoXiao/tylist.action",
+			contentType : 'application/json;charset=utf-8',
+			success : function(result) {
+				comsole.log("result.list");
+				var html = "<option value='0'>-申请种类-</option>";
+				// 将集合遍历到一个html字符串中
+				$.each(result.list, function(i, data) {
+					html += "<option value='" + data.bid + "'>" + data.bname
+							+ "</option>";
+				});
+				$("#type").html(html);
+			},
+			dataType : "json"
+		});      
+		console.log("321");
+	});
+</script>
+</head>
+<body>
+	<div class="topTitle">报销表</div>
+	<div class="qwe">
+		<div class="baoxiao">
+			<div>
+				申请报销科目： <select name="" id="type">
+					<option value="">科目</option>
+				</select>
+			</div>
+			<div>
+				申请时间： <input type="date">
+			</div>
+			<div>
+				申请金额：<input type="text">
+			</div>
+			<div>用途：</div>
+			<div>
+				<textarea name="" id="" cols="30" rows="10"></textarea>
+			</div>
+		</div>
+		<button>提交</button>
+	</div>
+</body>
+</html>

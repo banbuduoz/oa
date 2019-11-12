@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts-en.common.js"></script>
+    <title>财务统计</title>
+</head>
+<body>
+    <div style="display: flex;flex-wrap: wrap;justify-content: space-around">
+        <div>
+            <h3>上月费用前十</h3>
+            <div id="main1" style="width: 600px;height:400px;margin-top: 15px"></div>
+        </div>
+        <div>
+            <h3>费用科目对比</h3>
+            <div id="main2" style="width: 600px;height:400px;margin-top: 15px"></div>
+        </div>
+        <div>
+            <h3>每月费用总额</h3>
+            <div id="main3" style="width: 600px;height:400px;margin-top: 15px"></div>
+        </div>
+        <div>
+            <h3>费用科目对比</h3>
+            <div id="main4" style="width: 600px;height:400px;margin-top: 15px"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function one(){   
+        var myChart = echarts.init(document.getElementById('main1'));
+            var option = {
+                tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+            };
+            myChart.setOption(option);
+        }
+
+        function two(){
+            var myChart = echarts.init(document.getElementById('main2'));
+            var posList = [
+    'left', 'right', 'top', 'bottom',
+    'inside',
+    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+];
+
+myChart.configParameters = {
+    rotate: {
+        min: -90,
+        max: 90
+    },
+    align: {
+        options: {
+            left: 'left',
+            center: 'center',
+            right: 'right'
+        }
+    },
+    verticalAlign: {
+        options: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        }
+    },
+    position: {
+        options: echarts.util.reduce(posList, function (map, pos) {
+            map[pos] = pos;
+            return map;
+        }, {})
+    },
+    distance: {
+        min: 0,
+        max: 100
+    }
+};
+
+myChart.config = {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+    onChange: function () {
+        var labelOption = {
+            normal: {
+                rotate: myChart.config.rotate,
+                align: myChart.config.align,
+                verticalAlign: myChart.config.verticalAlign,
+                position: myChart.config.position,
+                distance: myChart.config.distance
+            }
+        };
+        myChart.setOption({
+            series: [{
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }]
+        });
+    }
+};
+
+
+var labelOption = {
+    normal: {
+        show: true,
+        position: myChart.config.position,
+        distance: myChart.config.distance,
+        align: myChart.config.align,
+        verticalAlign: myChart.config.verticalAlign,
+        rotate: myChart.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
+
+var option = {
+    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['2012', '2013', '2014', '2015', '2016']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Forest',
+            type: 'bar',
+            barGap: 0,
+            label: labelOption,
+            data: [320, 332, 301, 334, 390]
+        },
+        {
+            name: 'Steppe',
+            type: 'bar',
+            label: labelOption,
+            data: [220, 182, 191, 234, 290]
+        },
+        {
+            name: 'Desert',
+            type: 'bar',
+            label: labelOption,
+            data: [150, 232, 201, 154, 190]
+        },
+        {
+            name: 'Wetland',
+            type: 'bar',
+            label: labelOption,
+            data: [98, 77, 101, 99, 40]
+        }
+    ]
+}; myChart.setOption(option);
+        }
+
+
+
+        function three(){
+            var myChart = echarts.init(document.getElementById('main3'));
+            var option = {
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        areaStyle: {}
+    }]
+};
+myChart.setOption(option);
+        }
+        function four(){
+            var myChart = echarts.init(document.getElementById('main4'));
+            var option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'邮件营销',
+            type:'line',
+            stack: '总量',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'联盟广告',
+            type:'line',
+            stack: '总量',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'视频广告',
+            type:'line',
+            stack: '总量',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'直接访问',
+            type:'line',
+            stack: '总量',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'搜索引擎',
+            type:'line',
+            stack: '总量',
+            data:[820, 932, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+};
+
+myChart.setOption(option);
+        }
+
+
+
+
+
+
+        one()
+        two()
+        three()
+        four()
+    </script>
+</body>
+</html>
